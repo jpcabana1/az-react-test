@@ -1,20 +1,18 @@
 import logo from './logo.svg'
 import './App.css'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 function App() {
-  const [mensagem, setMensagem] = React.useState('Carregando...');
+  const [mensagem, setMensagem] = useState('Carregando...');
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch('https://az-test-dotnet.azurewebsites.net/hello')
       .then((res) => res.text())
       .then((resp) => {
         setMensagem(resp)
-        console.log(mensagem);
       })
       .catch((err) => {
         setMensagem('Erro: ' + err.message)
-        console.log(mensagem);
       })
   }, []);
 
